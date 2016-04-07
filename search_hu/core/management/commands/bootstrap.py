@@ -36,7 +36,7 @@ class Command(BaseCommand):
                 establishment=Establishment.objects.get(
                     index=available.strip().split(
                         ',')[0]),
-                available=available.strip().split(',')[2],
+                available=bool(int(available.strip().split(',')[2])),
                 date=datetime.datetime.strptime(available.strip().split(
                     ',')[1],
                     '%d/%m/%Y').date(),
