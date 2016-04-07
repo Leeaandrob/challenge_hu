@@ -19,3 +19,6 @@ tests:clean
 install:
 	pip install -r requirements.txt
 	python manage.py bootstrap --settings=search_hu.settings_local
+
+superuser:
+	python manage.py createsuperuser --settings=search_hu.settings_local
