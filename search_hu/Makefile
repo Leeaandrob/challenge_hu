@@ -15,3 +15,7 @@ shell:clean
 
 tests:clean
 	python manage.py test --settings=search_hu.settings_tests
+
+install:
+	pip install -r requirements.txt
+	python manage.py bootstrap --settings=search_hu.settings_local
