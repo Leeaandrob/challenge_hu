@@ -6,7 +6,7 @@ from django.views.generic import ListView, TemplateView
 from django.db.models import Q
 
 from search_engine.forms import EstablishmentForm
-from search_engine.models import Establishment
+from search_engine.models import AvailabilityEstablishment
 
 
 class SearchFormView(object):
@@ -18,8 +18,7 @@ class SearchFormView(object):
     def post(self, request, *args, **kwargs):
         context = self.get_context_data()
         if context['form'].is_valid():
-            name = context['form'].cleaned_data['name']
-            request.session['values_post'] = name
+            request.session['values_post'] = context['form'].cleaned_data
             return HttpResponseRedirect('establishments/')
         return super(SearchFormView,
                      self).render_to_response(context)
@@ -30,7 +29,7 @@ class EstablishmentSearchTemplateview(SearchFormView, TemplateView):
 
 
 class EstablishmentListView(ListView):
-    model = Establishment
+    model = AvailabilityEstablishment
     template_name = 'homesite/establishments.html'
     context_object_name = 'establishments'
     paginate_by = 5
@@ -40,9 +39,9 @@ class EstablishmentListView(ListView):
         return context
 
     def get_queryset(self):
-        queryset = Establishment.objects.all()
+        queryset = AvailabilityEstablishment.objects.all()
         values = self.request.session.get('values_post')
-        return queryset.filter(name__icontains=values)
+        return queryset.filter(name__icontains=values.get('name'))
 
     def get_querystring_url(self):
         querystring = self.request.GET.urlencode()
