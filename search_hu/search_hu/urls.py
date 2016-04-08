@@ -8,5 +8,6 @@ from homesite.views import (EstablishmentSearchTemplateview,
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', EstablishmentSearchTemplateview.as_view()),
-    url(r'^establishments/$', EstablishmentListView.as_view())
+    url(r'^establishments/$', EstablishmentListView.as_view()),
+    url(r'autocomplete', 'homesite.views.autocomplete')
 ]
