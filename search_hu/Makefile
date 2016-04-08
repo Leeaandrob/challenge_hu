@@ -23,3 +23,6 @@ install:
 
 superuser:
 	python manage.py createsuperuser --settings=search_hu.settings_local
+
+rebuild_index:
+	python manage.py rebuild_index --settings=search_hu.settings_local
