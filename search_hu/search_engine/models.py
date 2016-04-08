@@ -20,4 +20,7 @@ class AvailabilityEstablishment(models.Model):
                                       related_name='establishment_available')
 
     def __unicode__(self):
-        return "{0} - {1}".format(self.establishment.name, self.available)
+        return "{0} - {1} - {2}".format(
+            self.establishment.name, self.available,
+            self.date.strftime("%d/%m/%Y")
+        )
