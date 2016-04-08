@@ -14,7 +14,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-6 col-md-12 col-sm-12 widget-search">
-					<form action="." method="POST">
+					<form action="." method="POST" id="buscar">
 						<fieldset>
 							<legend>
 								<h2 class="title">title</h2>
@@ -22,7 +22,7 @@
 						</fieldset>
 						{%csrf_token%}
 						{{form}}
-						<button class="btn btn-success" action="POST">Buscar</button>
+						<button class="btn btn-success" type="submit" form="buscar" value="Submit">Buscar</button>
 					</form>
 				</div>
 			</div>
@@ -34,35 +34,20 @@
 			})
 		</script>
 		<script>
-			console.log(localStorage);
-			var availableTags = [
-				"ActionScript - Rio de Janeiro",
-				"AppleScript",
-				"Asp",
-				"BASIC",
-				"C",
-				"C++",
-				"Clojure",
-				"COBOL",
-				"ColdFusion",
-				"Erlang",
-				"Fortran",
-				"Groovy",
-				"Haskell",
-				"Java",
-				"JavaScript",
-				"Lisp",
-				"Perl",
-				"PHP",
-				"Python",
-				"Ruby",
-				"Scala",
-				"Scheme"
-
-			];
-
 			$('#id_name').autocomplete({
-				source: availableTags
+				source:function (request, response) {
+					$.getJSON("autocomplete/?term=" + request.term, function (data) {
+						response($.map(data, function (value, key) {
+							var city = value.city,
+								establishment = value.name;
+								;
+
+							return city + " - " + establishment;
+						}));
+					});
+				},
+				minLength: 2,
+				delay: 100
 			});
 		</script>
 	</body>
