@@ -14,16 +14,18 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-6 col-md-12 col-sm-12 widget-search">
-					<form action="." method="POST" id="buscar">
-						<fieldset>
-							<legend>
-								<h2 class="title">title</h2>
-							</legend>
-						</fieldset>
-						{%csrf_token%}
-						{{form}}
-						<button class="btn btn-success" type="submit" form="buscar" value="Submit">Buscar</button>
-					</form>
+					{%block content%}
+						<form action="." method="POST" id="buscar">
+							<fieldset>
+								<legend>
+									<h2 class="title">title</h2>
+								</legend>
+							</fieldset>
+							{%csrf_token%}
+							{{form}}
+							<button class="btn btn-success" type="submit" form="buscar" value="Submit">Buscar</button>
+						</form>
+					{%endblock%}
 				</div>
 			</div>
 		</div>

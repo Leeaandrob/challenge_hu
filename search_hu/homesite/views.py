@@ -1,6 +1,7 @@
 # coding: utf-8
 import re
 import json
+import datetime
 
 from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic import ListView, TemplateView
@@ -47,13 +48,16 @@ class EstablishmentListView(ListView):
         return context
 
     def get_queryset(self):
-        queryset = AvailabilityEstablishment.objects.all()
+        queryset = SearchQuerySet().all()
         values = self.request.session.get('values_post')
-        return queryset.filter(
-            available=True,
-            establishment__name=values.get('name').split('-')[1].strip(),
-            date__range=[str(values.get('checkin')),
-                         str(values.get('checkout'))])
+        return queryset.filter(available=True,
+                               name=values.get('name').split('-')[1].strip())
+                               # date__gte=datetime.datetime.strptime(
+                               #     str(values.get('checkin')),
+                               #     '%Y-%m-%d').date(),
+                               # date__lt=datetime.datetime.strptime(
+                               #     str(values.get('checkin')),
+                               #     '%Y-%m-%d').date())
 
     def get_querystring_url(self):
         querystring = self.request.GET.urlencode()
