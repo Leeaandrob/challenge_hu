@@ -39,12 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'search_hu',
-    'core',
     'search_engine',
-    'homesite',
 
     # third apps
-    'haystack'
+    'haystack',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE_CLASSES = [
