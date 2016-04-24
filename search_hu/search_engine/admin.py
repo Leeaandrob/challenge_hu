@@ -9,6 +9,7 @@ class EstablishmentAdmin(admin.ModelAdmin):
 
 class AvailabilityEstablishmentAdmin(admin.ModelAdmin):
     search_fields = ['establishment__name']
+    list_filter = ['available', 'date']
 
 
 admin.site.register(Establishment, EstablishmentAdmin)
