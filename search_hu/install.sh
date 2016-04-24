@@ -6,6 +6,7 @@ if [ `uname` == "Linux"  ]; then
 else
 	if [ `which brew` == "/usr/local/bin/brew" ]; then
 		sh postgres_osx.sh
+		brew install elasticsearch
 	else
 		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	fi

@@ -20,6 +20,8 @@ tests:clean
 install:
 	sh install.sh
 	pip install -r requirements.txt
+	python manage.py makemigrations --settings=search_hu.settings_local
+	python manage.py migrate --settings=search_hu.settings_local
 	python manage.py bootstrap --settings=search_hu.settings_local
 	python manage.py rebuild_index --settings=search_hu.settings_local
 
@@ -28,3 +30,6 @@ superuser:
 
 rebuild_index:
 	python manage.py rebuild_index --settings=search_hu.settings_local
+
+locust:
+	locust -f locustfile.py --host=http://localhost:8000
