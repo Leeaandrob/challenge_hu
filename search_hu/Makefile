@@ -2,6 +2,7 @@ clean:
 	find . -name "*.pyc" -exec rm -rf {} \;
 
 run:clean
+	elasticsearch
 	python manage.py runserver --settings=search_hu.settings_local
 
 migrations:clean
@@ -20,6 +21,7 @@ install:
 	sh install.sh
 	pip install -r requirements.txt
 	python manage.py bootstrap --settings=search_hu.settings_local
+	python manage.py rebuild_index --settings=search_hu.settings_local
 
 superuser:
 	python manage.py createsuperuser --settings=search_hu.settings_local
