@@ -8,9 +8,10 @@ class UserBehavior(TaskSet):
         csrftoken = response.cookies['csrftoken']
 
         self.client.post("/", {
-            "name": "Rio de Janeiro - Grand Court",
-            "checkin": "2015-03-01",
-            "checkout": "2015-04-01"},
+            "name": "Nova Friburgo - Grand Uysal",
+            "available": True,
+            "checkin": "2015-05-01",
+            "checkout": "2015-05-30"},
             headers={"X-CSRFToken": csrftoken}
         )
 
@@ -20,9 +21,10 @@ class UserBehavior(TaskSet):
         csrftoken = response.cookies['csrftoken']
 
         self.client.post("/", {
-            "name": "Rio de Janeiro - Grand",
-            "checkin": "2015-01-01",
-            "checkout": "2015-02-01"},
+            "name": "Rio Claro - Charisma Deluxe",
+            "available": True,
+            "checkin": "2015-05-01",
+            "checkout": "2015-05-30"},
             headers={"X-CSRFToken": csrftoken}
         )
 
